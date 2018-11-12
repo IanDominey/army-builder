@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  php-fpm:
+    image: mrreasonable/symfony-dev-php-fpm
+  nginx:
+    image: mrreasonable/php-dev-nginx
+    environment:
+      - NGINX_HOST=kt-ab.local www.kt-ab.local
+    depends_on:
+      - php-fpm
+    links:
+     - "php-fpm:php"
+    ports:
+      - 8080:80
